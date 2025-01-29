@@ -15,12 +15,5 @@ int randomNum(int min, int max)
 void Apple::move(Map& map, Snake& snake, bool force)
 {
 	if(isEaten || force)
-	{
-		coord = { randomNum(1, map.getData().width - 2), randomNum(1, map.getData().height - 2) };
-		while (map[coord.y][coord.x] == map.getData().border)
-		{
-			coord = { randomNum(1, map.getData().width - 2), randomNum(1, map.getData().height - 2) };
-		}
-	}
-
+		coord = map.getEmptyPos().at(randomNum(0, map.getEmptyPos().size()-1));
 }

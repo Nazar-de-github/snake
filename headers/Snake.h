@@ -17,8 +17,8 @@ public:
 	enum DIRECTION {
 		UP, RIGHT, DOWN, LEFT, NONE
 	};
-	const char TailSymbol = 'o';
-	const char HeadSymbol = 'O';
+	char TailSymbol = 'o';
+	char HeadSymbol = 'O';
 private:
 
 	int score = 0;
@@ -32,7 +32,15 @@ private:
 public:
 	Snake() : Direction(DIRECTION::NONE) { body.push_back({ 10,10 }); }
 	Snake(int x, int y) : Direction(DIRECTION::NONE) { body.push_back({ x,y }); }
-	void move(Map &map, Apple &apple, DIRECTION Direction);
+	Snake(Snake& other) {
+		Direction = other.Direction;
+		score = other.score;
+		selfDestruction = other.selfDestruction;
+		body = other.body;
+		TailSymbol = other.TailSymbol;
+		HeadSymbol = other.HeadSymbol;
+	}
+	void move(const Map &map, Apple &apple, DIRECTION Direction);
 	DIRECTION inputDirection();
 	int getScore() { return score; }
 

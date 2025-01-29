@@ -28,23 +28,31 @@ void Map::init()
 void Map::show()
 {
 	for (int i = 0; i < Data.height; i++)
-	{
 		std::cout << map[i]<<"\n";
-	}
 }
 
 
 void Map::putSnake(Snake snake)
 {
-	map[snake.getBody().at(0).y][snake.getBody().at(0).x] = snake.HeadSymbol;
-	for (int i = 1; i < snake.getBody().size(); i++)
+	for (int i = snake.getBody().size()-1; i > 0 ; i--)
 	{
 		map[snake.getBody().at(i).y][snake.getBody().at(i).x] = snake.TailSymbol;
 	}
+	map[snake.getBody().at(0).y][snake.getBody().at(0).x] = snake.HeadSymbol;
 }
 
 void Map::putApple(Apple& apple)
 {
 	map[apple.getPoint().y][apple.getPoint().x] = apple.getSymbol();
 	apple.setEaten(false);
+}
+
+std::vector<Point> Map::getEmptyPos()const
+{
+	std::vector<Point> emptyPos;
+	for (int i = 0; i < Data.height; i++)
+		for (int j = 0; j < Data.width; j++)
+			if(map[i][j] == ' ')
+				emptyPos.push_back({ j, i });
+	return emptyPos;
 }

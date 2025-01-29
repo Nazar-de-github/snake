@@ -4,9 +4,11 @@
 #define MAP
 #include <vector>
 #include <string>
+#include "Tools.h"
 
 class Snake;
 class Apple;
+
 
 class Map
 {
@@ -15,7 +17,7 @@ class Map
 		int width = 50;
 		char border = '#';
 		char wall = 'w';
-		bool isBorderStrong = false;
+		bool isBorderStrong = true;
 	}Data;
 	
 	std::vector<std::string>map;
@@ -35,6 +37,7 @@ public:
 	void putSnake(Snake snake);
 	void putApple(Apple &apple);
 	const DATA& getData()const { return Data; }
+	std::vector<Point> getEmptyPos()const;
 };
 
 #endif

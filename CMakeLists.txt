@@ -6,6 +6,7 @@ add_executable(
     src/Map.cpp
     src/Apple.cpp
     src/Snake.cpp
+    src/Game.cpp
 )
 
 target_include_directories(main PUBLIC ./headers)
